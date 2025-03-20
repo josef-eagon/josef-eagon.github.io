@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Favicon Links -->
+    <link rel="icon" type="image/x-icon" href="images/favicon_io/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/favicon_io/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="images/favicon_io/android-chrome-512x512.png">
+    <link rel="manifest" href="images/favicon_io/site.webmanifest">
+  </head>
+<body>
+  <header class="hero is-text">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">Welcome to My Creative Hub</h1>
+        <h2 class="subtitle">Art, Stories, Code & More</h2>
+      </div>
+    </div>
+  </header>
+  <nav class="navbar has-shadow is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="index.html">
+        <strong>My Portfolio</strong>
+      </a>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div id="navbarMenu" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="index.html">Home</a>
+        <a class="navbar-item" href="art.html">Art</a>
+        <a class="navbar-item" href="stories.html">Stories</a>
+        <a class="navbar-item" href="projects.html">Projects</a>
+        <a class="navbar-item" href="blog.html">Blog</a>
+        <a class="navbar-item" href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+  <section class="section">
+    <div class="container">
+      <h2 class="title is-2 has-text-centered">Explore My Work</h2>
+      <div class="columns is-multiline">
+        <div class="column is-one-quarter">
+          <div class="box">
+            <h3 class="title is-4">Art</h3>
+            <p>A collection of digital art and photography.</p>
+            <a href="art.html" class="button is-link">View Art</a>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="box">
+            <h3 class="title is-4">Stories</h3>
+            <p>Short stories and rewritten fables.</p>
+            <a href="stories.html" class="button is-link">Read Stories</a>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="box">
+            <h3 class="title is-4">Projects</h3>
+            <p>Coding experiments and games.</p>
+            <a href="projects.html" class="button is-link">See Projects</a>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="box">
+            <h3 class="title is-4">Blog</h3>
+            <p>Thoughts, updates, and more.</p>
+            <a href="blog.html" class="button is-link">Visit Blog</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <button id="darkModeToggle" class="button is-small is-light">Toggle Dark Mode</button>
+  </section>
+  <button id="backToTop" class="button is-small is-primary is-fixed-bottom-right">Back to Top</button>
+  <script src="js/scripts.js"></script>
+</body>
+</html>
