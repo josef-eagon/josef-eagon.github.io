@@ -57,9 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Define commands and their responses
   const commands = {
-    'W': { command: 'whoami', response: 'Jane Doe, a creative coder and tech enthusiast.' },
+    'W': { command: 'whoami', response: 'Josef, a creative coder and tech enthusiast.' },
     'P': { command: 'projects', response: 'Check out my work: Project X, Project Y, Project Z.' },
-    'C': { command: 'contact', response: 'Email me at jane@example.com or find me on GitHub.' }
+    'C': { command: 'contact', response: 'Email me at josef.eagon@proton.me or find me on GitHub.' }
   };
 
   // Function to type text character by character
