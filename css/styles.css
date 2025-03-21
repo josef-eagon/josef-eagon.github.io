@@ -61,7 +61,6 @@
 .section {
     padding: 2rem 1.5rem;
 }
-
 .section {
   opacity: 0; /* Start invisible */
   animation: fadeIn 1s ease forwards; /* Fade in over 1s */
@@ -79,6 +78,9 @@
   to {
     opacity: 1;
   }
+}
+.section:last-child {
+  padding-bottom: 1rem; /* Less padding at the bottom */
 }
 
 .title.is-2 {
@@ -116,7 +118,10 @@
 
 /* Matches navbar height */
 body {
-    padding-top: 4rem;
+  background-color: #f5f5f5; /* Matches Bulma's section background */
+  min-height: 100vh; /* Ensures body fills viewport */
+  margin: 0; /* Removes default margin */
+  padding-top: 4rem;
 }
 
 /* Box hover effect */
@@ -213,4 +218,52 @@ body {
   background-color: #2a2a2a; /* Matches dark mode boxes */
   color: #e0e0e0;
   border-color: #444; /* Optional: tweak border */
+}
+
+
+.terminal {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 1rem;
+  min-height: 200px;
+  overflow-y: auto;
+  border-radius: 0.5rem; /* Slight rounding to match Bulma */
+}
+pre {
+  white-space: pre-wrap;
+  margin: 0;
+}
+.instruction {
+  color: #00ff00;
+  margin-bottom: 1rem;
+}
+/* Dark mode adjustments for terminal */
+.dark-mode .terminal {
+  background-color: #111; /* Slightly lighter black for contrast */
+  color: #ddd;
+}
+.dark-mode .instruction {
+  color: #00cc00; /* Slightly darker green for readability */
+}
+.command-line {
+margin-bottom: 0.5rem;
+}
+.prompt {
+color: #00ff00; /* Green dollar sign */
+}
+.command {
+color: #fff; /* White command text */
+}
+.response {
+margin-left: 2em; /* Indent responses */
+margin-bottom: 1rem;
+}
+
+.cursor::after {
+  content: '_';
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  50% { opacity: 0; }
 }

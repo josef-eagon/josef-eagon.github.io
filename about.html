@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me - My Portfolio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/x-icon" href="images/favicon_io/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/favicon_io/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="images/favicon_io/android-chrome-512x512.png">
+  <link rel="manifest" href="images/favicon_io/site.webmanifest">
+  <style>
+    .terminal {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 1rem;
+      min-height: 200px;
+      overflow-y: auto;
+      border-radius: 0.5rem; /* Slight rounding to match Bulma */
+    }
+    pre {
+      white-space: pre-wrap;
+      margin: 0;
+    }
+    .instruction {
+      color: #00ff00;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero is-text">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">About Me</h1>
+        <h2 class="subtitle">A peek into my world</h2>
+      </div>
+    </div>
+  </header>
+  <nav class="navbar has-shadow is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="index.html">
+        <strong>my stuff</strong>
+      </a>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div id="navbarMenu" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="index.html">Home</a>
+        <a class="navbar-item" href="art.html">Art</a>
+        <a class="navbar-item" href="stories.html">Stories</a>
+        <a class="navbar-item" href="projects.html">Projects</a>
+        <a class="navbar-item" href="blog.html">Blog</a>
+        <a class="navbar-item" href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+  <section class="section">
+    <div class="container">
+      <div class="terminal" id="terminal" tabindex="0">
+        <p class="instruction">Click here and press a key: W for whoami, P for projects, C for contact</p>
+        <pre id="terminal-output">$ _</pre>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <button id="darkModeToggle" class="button is-small is-light">Toggle Dark Mode</button>
+  </section>
+  <button id="backToTop" class="button is-small is-primary is-fixed-bottom-right">Back to Top</button>
+  <script src="js/scripts.js"></script>
+  <script>
+    const terminal = document.getElementById('terminal');
+    const terminalOutput = document.getElementById('terminal-output');
+    let isTyping = false;
+
+    // Define commands and their responses
+    const commands = {
+      'W': { command: 'whoami', response: 'Jane Doe, a creative coder and tech enthusiast.' },
+      'P': { command: 'projects', response: 'Check out my work: Project X, Project Y, Project Z.' },
+      'C': { command: 'contact', response: 'Email me at jane@example.com or find me on GitHub.' }
+    };
+
+    // Function to type text character by character
+    function typeText(text, element, delay, callback) {
+      let i = 0;
+      function type() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, delay);
+        } else {
+          callback();
+        }
+      }
+      type();
+    }
+
+    // Handle command execution
+    function runCommand(key) {
+      if (isTyping) return;
+      const commandObj = commands[key];
+      if (!commandObj) return;
+      isTyping = true;
+      terminalOutput.textContent = terminalOutput.textContent.replace('_', '');
+      terminalOutput.textContent += '$ ';
+      typeText(commandObj.command, terminalOutput, 10, () => {
+        terminalOutput.textContent += '\n';
+        typeText(commandObj.response, terminalOutput, 50, () => {
+          terminalOutput.textContent += '\n$ _';
+          isTyping = false;
+        });
+      });
+    }
+
+    // Make terminal focusable and handle key presses
+    terminal.addEventListener('click', () => terminal.focus());
+    terminal.addEventListener('keydown', (e) => {
+      const key = e.key.toUpperCase();
+      if (commands[key]) {
+        runCommand(key);
+      }
+    });
+  </script>
+</body>
+</html>
