@@ -50,54 +50,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Terminal functionality
-  const terminal = document.getElementById('terminal');
-  const terminalOutput = document.getElementById('terminal-output');
-  // const terminalButtons = document.getElementById('terminal-buttons');
-  const terminalInput = document.getElementById('terminal-mobile-input');
-  let isTyping = false;
-  let currentInput = ''; // Store the user's typed input
+// Terminal functionality
+const terminal = document.getElementById('terminal');
+const terminalOutput = document.getElementById('terminal-output');
+const terminalInput = document.getElementById('terminal-mobile-input');
+let isTyping = false;
+let currentInput = ''; // Store the user's typed input
 
-  // Array of placeholder quotes
-  const quotes = [
-    'Placeholder quote 1: Something inspiring.',
-    'Placeholder quote 2: A witty remark.',
-    'Placeholder quote 3: A thoughtful saying.',
-    'Placeholder quote 4: Another cool quote.'
-  ];
+// Array of placeholder quotes
+const quotes = [
+  'Placeholder quote 1: Something inspiring.',
+  'Placeholder quote 2: A witty remark.',
+  'Placeholder quote 3: A thoughtful saying.',
+  'Placeholder quote 4: Another cool quote.'
+];
 
-  // Function to get a random quote
-  function getRandomQuote() {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    return quotes[randomIndex];
-  }
+// Function to get a random quote
+function getRandomQuote() {
+  const randomIndex = Math.floor(Math.random() * quotes.length);
+  return quotes[randomIndex];
+}
 
-  // Define commands and their responses
-  const commands = {
-    'whoami': { command: 'whoami', response: 'Jane Doe, a creative coder and tech enthusiast.' },
-    'projects': { command: 'projects', response: 'Check out my work: Project X, Project Y, Project Z.' },
-    'contact': { command: 'contact', response: 'Email me at jane@example.com or find me on GitHub.' },
-    'help': { command: 'help', response: 'Available commands: whoami, projects, contact, help, skills, about, quote, clear' },
-    'skills': { command: 'skills', response: 'I’m skilled in coding, digital art, and storytelling.' },
-    'about': { command: 'about', response: 'I’m a creative who loves blending art, code, and stories.' },
-    'quote': { command: 'quote', response: getRandomQuote },
-    'clear': { command: 'clear', response: null } // Special command with no response
-  };
+// Define commands and their responses
+const commands = {
+  'whoami': { command: 'whoami', response: 'Jane Doe, a creative coder and tech enthusiast.' },
+  'projects': { command: 'projects', response: 'Check out my work: Project X, Project Y, Project Z.' },
+  'contact': { command: 'contact', response: 'Email me at jane@example.com or find me on GitHub.' },
+  'help': { command: 'help', response: 'Available commands: whoami, projects, contact, help, skills, about, quote, clear' },
+  'skills': { command: 'skills', response: 'I’m skilled in coding, digital art, and storytelling.' },
+  'about': { command: 'about', response: 'I’m a creative who loves blending art, code, and stories.' },
+  'quote': { command: 'quote', response: getRandomQuote },
+  'clear': { command: 'clear', response: null }
+};
 
-  // Function to type text character by character
-  function typeText(text, element, delay, callback) {
-    let i = 0;
-    function type() {
-      if (i < text.length) {
-        element.textContent += text.charAt(i);
-        i++;
-        setTimeout(type, delay);
-      } else {
-        callback();
-      }
+// Function to type text character by character
+function typeText(text, element, delay, callback) {
+  let i = 0;
+  function type() {
+    if (i < text.length) {
+      element.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, delay);
+    } else {
+      callback();
     }
-    type();
   }
+  type();
+}
 
 // Handle command execution
 function runCommand(command) {
@@ -107,7 +106,8 @@ function runCommand(command) {
     isTyping = true;
     terminalOutput.textContent += '\n';
     typeText(`Command not found: ${command}`, terminalOutput, 50, () => {
-      terminalOutput.textContent += '\n$ _';
+      terminalOutput.textContent += '\n$ ';
+      terminalOutput.innerHTML += '<span class="terminal-cursor"></span>';
       isTyping = false;
     });
     return;
@@ -115,7 +115,8 @@ function runCommand(command) {
 
   // Special case for 'clear' command
   if (command.toLowerCase() === 'clear') {
-    terminalOutput.textContent = '$ _';
+    terminalOutput.textContent = '$ ';
+    terminalOutput.innerHTML += '<span class="terminal-cursor"></span>';
     currentInput = ''; // Reset current input
     if (terminalInput) terminalInput.value = ''; // Clear mobile input field
     terminalOutput.scrollTop = 0; // Scroll to top
@@ -130,7 +131,8 @@ function runCommand(command) {
     terminalOutput.textContent += '\n';
     const response = typeof commandObj.response === 'function' ? commandObj.response() : commandObj.response;
     typeText(response, terminalOutput, 50, () => {
-      terminalOutput.textContent += '\n$ _';
+      terminalOutput.textContent += '\n$ ';
+      terminalOutput.innerHTML += '<span class="terminal-cursor"></span>';
       isTyping = false;
     });
   });
@@ -140,18 +142,27 @@ function runCommand(command) {
 if (terminal) {
   // Handle both click and touchstart for activation
   terminal.addEventListener('click', () => {
-    if (terminalInput) {
-      setTimeout(() => terminalInput.focus(), 0); // Small delay to ensure focus
+    if (terminalInput && window.innerWidth <= 1024) {
+      setTimeout(() => terminalInput.focus(), 0);
     } else {
       terminal.focus();
+      terminal.classList.add('focused');
     }
   });
   terminal.addEventListener('touchstart', (e) => {
     e.preventDefault();
-    if (terminalInput) {
+    if (terminalInput && window.innerWidth <= 1024) {
       setTimeout(() => terminalInput.focus(), 0);
     } else {
       terminal.focus();
+      terminal.classList.add('focused');
+    }
+  });
+
+  // Remove focused class when terminal loses focus
+  terminal.addEventListener('blur', () => {
+    if (!terminalInput || document.activeElement !== terminalInput) {
+      terminal.classList.remove('focused');
     }
   });
 
@@ -166,16 +177,18 @@ if (terminal) {
       if (currentInput.trim() !== '') {
         runCommand(currentInput.trim());
         currentInput = ''; // Reset input after command
-        terminalOutput.textContent = terminalOutput.textContent.replace(/\$ _.*$/, '$ _');
+        terminalOutput.textContent = terminalOutput.textContent.replace(/\$ .*$/, '$ ');
       }
     } else if (e.key === 'Backspace') {
       // Handle backspace to delete characters
       currentInput = currentInput.slice(0, -1);
-      terminalOutput.textContent = terminalOutput.textContent.replace(/\$ _.*$/, '$ _' + currentInput);
+      terminalOutput.textContent = terminalOutput.textContent.replace(/\$ .*$/, '$ ' + currentInput);
+      terminalOutput.innerHTML += '<span class="terminal-cursor"></span>';
     } else if (e.key.length === 1) {
       // Append printable characters to the input
       currentInput += e.key;
-      terminalOutput.textContent = terminalOutput.textContent.replace(/\$ _.*$/, '$ _' + currentInput);
+      terminalOutput.textContent = terminalOutput.textContent.replace(/\$ .*$/, '$ ' + currentInput);
+      terminalOutput.innerHTML += '<span class="terminal-cursor"></span>';
     }
   });
 
@@ -183,7 +196,7 @@ if (terminal) {
   if (terminalInput) {
     terminalInput.addEventListener('input', (e) => {
       currentInput = e.target.value; // Update currentInput as user types
-      terminalOutput.textContent = terminalOutput.textContent.replace(/\$ _.*$/, '$ _' + currentInput);
+      terminalOutput.textContent = terminalOutput.textContent.replace(/\$ .*$/, '$ ' + currentInput);
     });
 
     terminalInput.addEventListener('keydown', (e) => {
@@ -193,9 +206,14 @@ if (terminal) {
           runCommand(currentInput.trim());
           currentInput = ''; // Reset input after command
           terminalInput.value = ''; // Clear the input field
-          terminalOutput.textContent = terminalOutput.textContent.replace(/\$ _.*$/, '$ _');
+          terminalOutput.textContent = terminalOutput.textContent.replace(/\$ .*$/, '$ ');
         }
       }
+    });
+
+    // Ensure terminal loses focus class when mobile input is focused
+    terminalInput.addEventListener('focus', () => {
+      terminal.classList.remove('focused');
     });
   }
 }
