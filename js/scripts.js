@@ -78,9 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Define commands and their responses
   const commands = {
-    'whoami': { command: 'whoami', response: 'Jane Doe, a creative coder and tech enthusiast.' },
+    'whoami': { command: 'whoami', response: 'Josef. I’m just a guy who does stuff.' },
     'projects': { command: 'projects', response: 'Check out my work: Project X, Project Y, Project Z.' },
-    'contact': { command: 'contact', response: 'Email me at jane@example.com or find me on GitHub.' },
+    'contact': { command: 'contact', response: 'Email me at josef.eagon@proton.me or find me on GitHub.' },
     'help': { command: 'help', response: 'Available commands: whoami, projects, contact, help, skills, about, quote, clear' },
     'skills': { command: 'skills', response: 'I’m skilled in coding, digital art, and storytelling.' },
     'about': { command: 'about', response: 'I’m a creative who loves blending art, code, and stories.' },
