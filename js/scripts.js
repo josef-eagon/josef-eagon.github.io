@@ -11,8 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         $target.classList.toggle('is-active');
       });
     });
-    }
-  });
+  }
 
   // Dark mode toggle
   const toggleButton = document.getElementById('darkModeToggle');
@@ -50,93 +49,99 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-// Terminal functionality
-const terminal = document.getElementById('terminal');
-const terminalOutput = document.getElementById('terminal-output');
-const terminalInput = document.getElementById('terminal-mobile-input');
-let isTyping = false;
-let currentInput = ''; // Store the user's typed input
+  // Terminal functionality
+  const terminal = document.getElementById('terminal');
+  const terminalOutput = document.getElementById('terminal-output');
+  const terminalInput = document.getElementById('terminal-mobile-input');
+  let isTyping = false;
+  let currentInput = ''; // Store the user's typed input
 
-// Array of placeholder quotes
-const quotes = [
-  'Placeholder quote 1: Something inspiring.',
-  'Placeholder quote 2: A witty remark.',
-  'Placeholder quote 3: A thoughtful saying.',
-  'Placeholder quote 4: Another cool quote.'
-];
-
-// Function to get a random quote
-function getRandomQuote() {
-  const randomIndex = Math.floor(Math.random() * quotes.length);
-  return quotes[randomIndex];
-}
-
-// Define commands and their responses
-const commands = {
-  'whoami': { command: 'whoami', response: 'Jane Doe, a creative coder and tech enthusiast.' },
-  'projects': { command: 'projects', response: 'Check out my work: Project X, Project Y, Project Z.' },
-  'contact': { command: 'contact', response: 'Email me at jane@example.com or find me on GitHub.' },
-  'help': { command: 'help', response: 'Available commands: whoami, projects, contact, help, skills, about, quote, clear' },
-  'skills': { command: 'skills', response: 'I’m skilled in coding, digital art, and storytelling.' },
-  'about': { command: 'about', response: 'I’m a creative who loves blending art, code, and stories.' },
-  'quote': { command: 'quote', response: getRandomQuote },
-  'clear': { command: 'clear', response: null }
-};
-
-// Function to type text character by character
-function typeText(text, element, delay, callback) {
-  let i = 0;
-  function type() {
-    if (i < text.length) {
-      element.textContent += text.charAt(i);
-      i++;
-      setTimeout(type, delay);
-    } else {
-      callback();
-    }
-  }
-  type();
-}
-
-// Handle command execution
-function runCommand(command) {
-  if (isTyping) return;
-  const commandObj = commands[command.toLowerCase()];
-  if (!commandObj) {
-    isTyping = true;
-    terminalOutput.textContent += '\n';
-    typeText(`Command not found: ${command}`, terminalOutput, 50, () => {
-      terminalOutput.textContent += '\n$ ';
-      terminalOutput.innerHTML += '<span class="terminal-cursor"></span>';
-      isTyping = false;
-    });
-    return;
-  }
-
-  // Special case for 'clear' command
-  if (command.toLowerCase() === 'clear') {
+  // Add initial cursor on page load
+  if (terminalOutput) {
     terminalOutput.textContent = '$ ';
     terminalOutput.innerHTML += '<span class="terminal-cursor"></span>';
-    currentInput = ''; // Reset current input
-    if (terminalInput) terminalInput.value = ''; // Clear mobile input field
-    terminalOutput.scrollTop = 0; // Scroll to top
-    isTyping = false;
-    return;
   }
 
-  // Handle other commands
-  isTyping = true;
-  terminalOutput.textContent += '\n';
-  typeText(commandObj.command, terminalOutput, 10, () => {
-    terminalOutput.textContent += '\n';
-    const response = typeof commandObj.response === 'function' ? commandObj.response() : commandObj.response;
-    typeText(response, terminalOutput, 50, () => {
-      terminalOutput.textContent += '\n$ ';
+  // Array of placeholder quotes
+  const quotes = [
+    'Placeholder quote 1: Something inspiring.',
+    'Placeholder quote 2: A witty remark.',
+    'Placeholder quote 3: A thoughtful saying.',
+    'Placeholder quote 4: Another cool quote.'
+  ];
+
+  // Function to get a random quote
+  function getRandomQuote() {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    return quotes[randomIndex];
+  }
+
+  // Define commands and their responses
+  const commands = {
+    'whoami': { command: 'whoami', response: 'Jane Doe, a creative coder and tech enthusiast.' },
+    'projects': { command: 'projects', response: 'Check out my work: Project X, Project Y, Project Z.' },
+    'contact': { command: 'contact', response: 'Email me at jane@example.com or find me on GitHub.' },
+    'help': { command: 'help', response: 'Available commands: whoami, projects, contact, help, skills, about, quote, clear' },
+    'skills': { command: 'skills', response: 'I’m skilled in coding, digital art, and storytelling.' },
+    'about': { command: 'about', response: 'I’m a creative who loves blending art, code, and stories.' },
+    'quote': { command: 'quote', response: getRandomQuote },
+    'clear': { command: 'clear', response: null }
+  };
+
+  // Function to type text character by character
+  function typeText(text, element, delay, callback) {
+    let i = 0;
+    function type() {
+      if (i < text.length) {
+        element.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, delay);
+      } else {
+        callback();
+      }
+    }
+    type();
+  }
+
+  // Handle command execution
+  function runCommand(command) {
+    if (isTyping) return;
+    const commandObj = commands[command.toLowerCase()];
+    if (!commandObj) {
+      isTyping = true;
+      terminalOutput.textContent += '\n';
+      typeText(`Command not found: ${command}`, terminalOutput, 50, () => {
+        terminalOutput.textContent += '\n$ ';
+        terminalOutput.innerHTML += '<span class="terminal-cursor"></span>';
+        isTyping = false;
+      });
+      return;
+    }
+
+    // Special case for 'clear' command
+    if (command.toLowerCase() === 'clear') {
+      terminalOutput.textContent = '$ ';
       terminalOutput.innerHTML += '<span class="terminal-cursor"></span>';
+      currentInput = ''; // Reset current input
+      if (terminalInput) terminalInput.value = ''; // Clear mobile input field
+      terminalOutput.scrollTop = 0; // Scroll to top
       isTyping = false;
+      return;
+    }
+
+    // Handle other commands
+    isTyping = true;
+    terminalOutput.textContent += '\n';
+    typeText(commandObj.command, terminalOutput, 10, () => {
+      terminalOutput.textContent += '\n';
+      const response = typeof commandObj.response === 'function' ? commandObj.response() : commandObj.response;
+      typeText(response, terminalOutput, 50, () => {
+        terminalOutput.textContent += '\n$ ';
+        terminalOutput.innerHTML += '<span class="terminal-cursor"></span>';
+        isTyping = false;
+      });
     });
-  });
-}
+  }
 
   // Terminal interaction
   if (terminal) {
@@ -217,3 +222,4 @@ function runCommand(command) {
       });
     }
   }
+});
