@@ -20,12 +20,24 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Get the dark mode toggle button
+// New dark mode code
 const toggleButton = document.getElementById('darkModeToggle');
+const body = document.body;
 
-// Add a click event to toggle dark mode
+// Check if dark mode was previously enabled
+if (localStorage.getItem('darkMode') === 'enabled') {
+  body.classList.add('dark-mode');
+}
+
+// Toggle dark mode on click
 toggleButton.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
+  body.classList.toggle('dark-mode');
+  // Save preference to localStorage
+  if (body.classList.contains('dark-mode')) {
+    localStorage.setItem('darkMode', 'enabled');
+  } else {
+    localStorage.setItem('darkMode', 'disabled');
+  }
 });
 
 // Get the back-to-top button
