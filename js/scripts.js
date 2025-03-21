@@ -54,12 +54,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const terminalOutput = document.getElementById('terminal-output');
   const terminalButtons = document.getElementById('terminal-buttons');
   let isTyping = false;
+  let currentInput = ''; // Store the user's typed input
 
   // Define commands and their responses
   const commands = {
-    'W': { command: 'whoami', response: 'Josef, a creative coder and tech enthusiast.' },
-    'P': { command: 'projects', response: 'Check out my work: Project X, Project Y, Project Z.' },
-    'C': { command: 'contact', response: 'Email me at josef.eagon@proton.me or find me on GitHub.' }
+    'whoami': { command: 'whoami', response: 'Jane Doe, a creative coder and tech enthusiast.' },
+    'projects': { command: 'projects', response: 'Check out my work: Project X, Project Y, Project Z.' },
+    'contact': { command: 'contact', response: 'Email me at jane@example.com or find me on GitHub.' }
   };
 
   // Function to type text character by character
@@ -78,13 +79,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Handle command execution
-  function runCommand(key) {
+  function runCommand(command) {
     if (isTyping) return;
-    const commandObj = commands[key];
-    if (!commandObj) return;
+    const commandObj = commands[command.toLowerCase()];
+    if (!commandObj) {
+      isTyping = true;
+      terminalOutput.textContent += '\n';
+      typeText(`Command not found: ${command}`, terminalOutput, 50, () => {
+        terminalOutput.textContent += '\n$ _';
+        isTyping = false;
+      });
+      return;
+    }
     isTyping = true;
-    terminalOutput.textContent = terminalOutput.textContent.replace('_', '');
-    terminalOutput.textContent += '$ ';
+    terminalOutput.textContent += '\n';
     typeText(commandObj.command, terminalOutput, 10, () => {
       terminalOutput.textContent += '\n';
       typeText(commandObj.response, terminalOutput, 50, () => {
@@ -105,23 +113,40 @@ document.addEventListener('DOMContentLoaded', () => {
       terminal.focus();
     });
 
-    // Handle keypresses (desktop)
+    // Handle typing input
     terminal.addEventListener('keydown', (e) => {
-      const key = e.key.toUpperCase();
-      if (commands[key]) {
-        e.preventDefault();
-        runCommand(key);
+      if (isTyping) return; // Ignore input while typing response
+      e.preventDefault(); // Prevent default key behavior (e.g., scrolling)
+
+      if (e.key === 'Enter') {
+        // Process the command when Enter is pressed
+        if (currentInput.trim() !== '') {
+          runCommand(currentInput.trim());
+          currentInput = ''; // Reset input after command
+          terminalOutput.textContent = terminalOutput.textContent.replace(/\$ _.*$/, '$ _');
+        }
+      } else if (e.key === 'Backspace') {
+        // Handle backspace to delete characters
+        currentInput = currentInput.slice(0, -1);
+        terminalOutput.textContent = terminalOutput.textContent.replace(/\$ _.*$/, '$ _' + currentInput);
+      } else if (e.key.length === 1) {
+        // Append printable characters to the input
+        currentInput += e.key;
+        terminalOutput.textContent = terminalOutput.textContent.replace(/\$ _.*$/, '$ _' + currentInput);
       }
     });
 
-    // Handle mobile button clicks
+    // Handle mobile button clicks (for now, keeping these as-is)
     if (terminalButtons) {
       terminalButtons.addEventListener('click', (e) => {
         const button = e.target.closest('button');
         if (button) {
           const key = button.dataset.key;
-          if (commands[key]) {
-            runCommand(key);
+          if (key) {
+            const command = { 'W': 'whoami', 'P': 'projects', 'C': 'contact' }[key];
+            if (command) {
+              runCommand(command);
+            }
           }
         }
       });
@@ -129,9 +154,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const button = e.target.closest('button');
         if (button) {
           const key = button.dataset.key;
-          if (commands[key]) {
-            e.preventDefault(); // Prevent default touch behavior
-            runCommand(key);
+          if (key) {
+            e.preventDefault();
+            const command = { 'W': 'whoami', 'P': 'projects', 'C': 'contact' }[key];
+            if (command) {
+              runCommand(command);
+            }
           }
         }
       });
