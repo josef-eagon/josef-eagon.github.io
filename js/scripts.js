@@ -56,14 +56,29 @@ document.addEventListener('DOMContentLoaded', () => {
   let isTyping = false;
   let currentInput = ''; // Store the user's typed input
 
+  // Array of placeholder quotes
+  const quotes = [
+    'Placeholder quote 1: Something inspiring.',
+    'Placeholder quote 2: A witty remark.',
+    'Placeholder quote 3: A thoughtful saying.',
+    'Placeholder quote 4: Another cool quote.'
+  ];
+
+  // Function to get a random quote
+  function getRandomQuote() {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    return quotes[randomIndex];
+  }
+
   // Define commands and their responses
   const commands = {
-    'whoami': { command: 'whoami', response: 'Josef, a creative coder and tech enthusiast.' },
+    'whoami': { command: 'whoami', response: 'Jane Doe, a creative coder and tech enthusiast.' },
     'projects': { command: 'projects', response: 'Check out my work: Project X, Project Y, Project Z.' },
-    'contact': { command: 'contact', response: 'Email me at josef.eagon@proton.me or find me on GitHub.' },
-    'help': { command: 'help', response: 'Available commands: whoami, projects, contact, help, skills, about' },
-    'skills': { command: 'skills', response: 'I’m skilled in python, HTML, javascript, digital art, and storytelling.' },
-    'about': { command: 'about', response: 'I’m a creative who loves blending art, code, and stories.' }
+    'contact': { command: 'contact', response: 'Email me at jane@example.com or find me on GitHub.' },
+    'help': { command: 'help', response: 'Available commands: whoami, projects, contact, help, skills, about, quote' },
+    'skills': { command: 'skills', response: 'I’m skilled in coding, digital art, and storytelling.' },
+    'about': { command: 'about', response: 'I’m a creative who loves blending art, code, and stories.' },
+    'quote': { command: 'quote', response: getRandomQuote }
   };
 
   // Function to type text character by character
@@ -83,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Handle command execution
   function runCommand(command) {
-    if (isTyping) return;
+    if (isTyping) return; // Prevent overlapping commands
     const commandObj = commands[command.toLowerCase()];
     if (!commandObj) {
       isTyping = true;
@@ -98,7 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
     terminalOutput.textContent += '\n';
     typeText(commandObj.command, terminalOutput, 10, () => {
       terminalOutput.textContent += '\n';
-      typeText(commandObj.response, terminalOutput, 50, () => {
+      const response = typeof commandObj.response === 'function' ? commandObj.response() : commandObj.response;
+      typeText(response, terminalOutput, 50, () => {
         terminalOutput.textContent += '\n$ _';
         isTyping = false;
       });
