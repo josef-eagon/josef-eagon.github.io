@@ -230,6 +230,28 @@ body {
   overflow-y: auto;
   border-radius: 0.5rem; /* Slight rounding to match Bulma */
 }
+.terminal .buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+.terminal .button.is-dark {
+  background-color: #333;
+  color: #00ff00;
+  border-color: #444;
+}
+.terminal .button.is-dark:hover {
+  background-color: #444;
+}
+.dark-mode .terminal .button.is-dark {
+  background-color: #222;
+  border-color: #555;
+}
+.dark-mode .terminal .button.is-dark:hover {
+  background-color: #333;
+}
+
 pre {
   white-space: pre-wrap;
   margin: 0;

@@ -52,13 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Terminal functionality
   const terminal = document.getElementById('terminal');
   const terminalOutput = document.getElementById('terminal-output');
+  const terminalInput = document.getElementById('terminal-input');
+  const terminalButtons = document.getElementById('terminal-buttons');
   let isTyping = false;
 
   // Define commands and their responses
   const commands = {
-    'W': { command: 'whoami', response: 'Josef, artist, coder, and storyteller.' },
-    'P': { command: 'projects', response: 'Matrix Visualization, Number Rain, Mouse Particles—check them out!' },
-    'C': { command: 'contact', response: 'Email me at your-email@example.com or find me on X @YourHandle.' }
+    'W': { command: 'whoami', response: 'Jane Doe, a creative coder and tech enthusiast.' },
+    'P': { command: 'projects', response: 'Check out my work: Project X, Project Y, Project Z.' },
+    'C': { command: 'contact', response: 'Email me at jane@example.com or find me on GitHub.' }
   };
 
   // Function to type text character by character
@@ -95,12 +97,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Make terminal focusable and handle key presses
   if (terminal) {
-    terminal.addEventListener('click', () => terminal.focus());
-    terminal.addEventListener('keydown', (e) => {
+    // Focus the hidden input on click/tap
+    terminal.addEventListener('click', () => {
+      terminalInput.focus();
+    });
+
+    // Handle keypresses from the input
+    terminalInput.addEventListener('keydown', (e) => {
       const key = e.key.toUpperCase();
       if (commands[key]) {
+        e.preventDefault(); // Prevent typing in the input
         runCommand(key);
       }
     });
+
+    // Handle mobile button clicks
+    if (terminalButtons) {
+      terminalButtons.addEventListener('click', (e) => {
+        const button = e.target.closest('button');
+        if (button) {
+          const key = button.dataset.key;
+          if (commands[key]) {
+            runCommand(key);
+          }
+        }
+      });
+    }
   }
 });
