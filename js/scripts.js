@@ -145,19 +145,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Terminal interaction
   if (terminal) {
+    // Function to detect mobile devices
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
     // Handle both click and touchstart for activation
     terminal.addEventListener('click', () => {
-      if (terminalInput && window.innerWidth <= 1024) {
-        setTimeout(() => terminalInput.focus(), 0);
+      if (terminalInput && isMobileDevice()) {
+        terminalInput.focus();
       } else {
         terminal.focus();
         terminal.classList.add('focused');
       }
     });
     terminal.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-      if (terminalInput && window.innerWidth <= 1024) {
-        setTimeout(() => terminalInput.focus(), 0);
+      if (terminalInput && isMobileDevice()) {
+        terminalInput.focus();
       } else {
         terminal.focus();
         terminal.classList.add('focused');
