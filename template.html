@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Specifies the character encoding for the HTML document -->
   <meta charset="UTF-8">
+  <!-- Ensures the webpage is responsive and sets the viewport width to the device width -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects - My Portfolio</title>
+  <!-- Sets the title of the webpage, which appears in the browser tab -->
+  <title>New Page - My Portfolio</title>
+  <!-- Links to the Bulma CSS framework for styling the webpage -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <!-- Links to a custom CSS file for additional styles -->
   <link rel="stylesheet" href="css/styles.css">
+  <!-- Favicon Links for different devices and platforms -->
   <link rel="icon" type="image/x-icon" href="images/favicon_io/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="images/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="192x192" href="images/favicon_io/android-chrome-192x192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="images/favicon_io/android-chrome-512x512.png">
+  <!-- Link to the web app manifest file for Progressive Web App (PWA) settings -->
   <link rel="manifest" href="images/favicon_io/site.webmanifest">
 </head>
 <body>
+  <!-- Header section with a hero banner -->
   <header class="hero is-text">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title">My Code</h1>
-        <h2 class="subtitle">Python, Javascript and more!</h2>
+        <!-- Main title of the page -->
+        <h1 class="title">[Page Title]</h1>
+        <!-- Subtitle of the page -->
+        <h2 class="subtitle">[Page Subtitle]</h2>
       </div>
     </div>
   </header>
+  <!-- Navigation bar at the top of the page -->
   <nav class="navbar has-shadow is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
+      <!-- Link to the homepage -->
       <a class="navbar-item" href="index.html">
-        <strong>My Portfolio</strong>
+        <strong>my stuff</strong>
       </a>
+      <!-- Hamburger menu for mobile view -->
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -34,6 +47,7 @@
     </div>
     <div id="navbarMenu" class="navbar-menu">
       <div class="navbar-start">
+        <!-- Navigation links to different sections of the portfolio -->
         <a class="navbar-item" href="index.html">Home</a>
         <a class="navbar-item" href="art.html">Art</a>
         <a class="navbar-item" href="stories.html">Stories</a>
@@ -43,41 +57,23 @@
       </div>
     </div>
   </nav>
+  <!-- Main content section -->
   <section class="section">
     <div class="container">
-      <h2 class="title is-2">Coding Creations</h2>
-      <div class="columns is-multiline">
-        <div class="column is-half">
-          <a href="projects/matrix_vis.html">
-            <div class="box">
-              <h3 class="title is-4">Matrix Visualization</h3>
-              <p>Watch the matrix drip, now in color!</p>
-            </div>
-          </a>
-        </div>
-        <div class="column is-half">
-          <a href="projects/number_rain.html">
-            <div class="box">
-              <h3 class="title is-4">Number Rain</h3>
-              <p>Watch the fibonacci sequence rain!</p>
-            </div>
-          </a>
-        </div>
-        <div class="column is-half">
-          <a href="projects/mouse_particles.html">
-            <div class="box">
-              <h3 class="title is-4">Mouse Particles</h3>
-              <p>Interact with the particles! (PC ONLY)</p>
-            </div>
-          </a>
-      </div>
+      <!-- Section title -->
+      <h2 class="title is-2">[Section Title]</h2>
+      <!-- Placeholder for custom content -->
+      <p class="content">[Your content goes here—text, images, code, whatever you like!]</p>
     </div>
-  </div>
   </section>
+  <!-- Section for additional controls or information -->
   <section class="section">
+    <!-- Button to toggle dark mode -->
     <button id="darkModeToggle" class="button is-small is-light">Toggle Dark Mode</button>
   </section>
+  <!-- Button to scroll back to the top of the page -->
   <button id="backToTop" class="button is-small is-primary is-fixed-bottom-right">Back to Top</button>
+  <!-- Link to the JavaScript file for additional functionality -->
   <script src="js/scripts.js"></script>
 </body>
 </html>
