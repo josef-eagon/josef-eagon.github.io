@@ -76,10 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
     'whoami': { command: 'whoami', response: 'Jane Doe, a creative coder and tech enthusiast.' },
     'projects': { command: 'projects', response: 'Check out my work: Project X, Project Y, Project Z.' },
     'contact': { command: 'contact', response: 'Email me at jane@example.com or find me on GitHub.' },
-    'help': { command: 'help', response: 'Available commands: whoami, projects, contact, help, skills, about, quote' },
+    'help': { command: 'help', response: 'Available commands: whoami, projects, contact, help, skills, about, quote, clear' },
     'skills': { command: 'skills', response: 'I’m skilled in coding, digital art, and storytelling.' },
     'about': { command: 'about', response: 'I’m a creative who loves blending art, code, and stories.' },
-    'quote': { command: 'quote', response: getRandomQuote }
+    'quote': { command: 'quote', response: getRandomQuote },
+    'clear': { command: 'clear', response: null } // Special command with no response
   };
 
   // Function to type text character by character
@@ -110,6 +111,17 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       return;
     }
+
+    // Special case for 'clear' command
+    if (command.toLowerCase() === 'clear') {
+      terminalOutput.textContent = '$ _';
+      currentInput = ''; // Reset current input
+      if (terminalInput) terminalInput.value = ''; // Clear mobile input field
+      isTyping = false;
+      return;
+    }
+
+    // Handle other commands
     isTyping = true;
     terminalOutput.textContent += '\n';
     typeText(commandObj.command, terminalOutput, 10, () => {
