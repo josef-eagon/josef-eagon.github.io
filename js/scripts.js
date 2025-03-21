@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const terminal = document.getElementById('terminal');
   const terminalOutput = document.getElementById('terminal-output');
   const terminalButtons = document.getElementById('terminal-buttons');
+  const terminalInput = document.getElementById('terminal-mobile-input');
   let isTyping = false;
   let currentInput = ''; // Store the user's typed input
 
@@ -98,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Handle command execution
   function runCommand(command) {
-    if (isTyping) return; // Prevent overlapping commands
+    if (isTyping) return;
     const commandObj = commands[command.toLowerCase()];
     if (!commandObj) {
       isTyping = true;
@@ -125,16 +126,25 @@ document.addEventListener('DOMContentLoaded', () => {
   if (terminal) {
     // Handle both click and touchstart for activation
     terminal.addEventListener('click', () => {
-      terminal.focus();
+      if (terminalInput) {
+        terminalInput.focus(); // Focus the input field on mobile
+      } else {
+        terminal.focus(); // Focus the terminal on desktop
+      }
     });
     terminal.addEventListener('touchstart', (e) => {
       e.preventDefault(); // Prevent scrolling or other default behaviors
-      terminal.focus();
+      if (terminalInput) {
+        terminalInput.focus();
+      } else {
+        terminal.focus();
+      }
     });
 
-    // Handle typing input
+    // Handle desktop typing input (direct into terminal)
     terminal.addEventListener('keydown', (e) => {
       if (isTyping) return; // Ignore input while typing response
+      if (terminalInput && document.activeElement === terminalInput) return; // Ignore if mobile input is focused
       e.preventDefault(); // Prevent default key behavior (e.g., scrolling)
 
       if (e.key === 'Enter') {
@@ -154,6 +164,26 @@ document.addEventListener('DOMContentLoaded', () => {
         terminalOutput.textContent = terminalOutput.textContent.replace(/\$ _.*$/, '$ _' + currentInput);
       }
     });
+
+    // Handle mobile input field
+    if (terminalInput) {
+      terminalInput.addEventListener('input', (e) => {
+        currentInput = e.target.value; // Update currentInput as user types
+        terminalOutput.textContent = terminalOutput.textContent.replace(/\$ _.*$/, '$ _' + currentInput);
+      });
+
+      terminalInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault(); // Prevent default Enter behavior (e.g., form submission)
+          if (currentInput.trim() !== '') {
+            runCommand(currentInput.trim());
+            currentInput = ''; // Reset input after command
+            terminalInput.value = ''; // Clear the input field
+            terminalOutput.textContent = terminalOutput.textContent.replace(/\$ _.*$/, '$ _');
+          }
+        }
+      });
+    }
 
     // Handle mobile button clicks (for now, keeping these as-is)
     if (terminalButtons) {

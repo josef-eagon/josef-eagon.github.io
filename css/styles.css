@@ -251,6 +251,72 @@ body {
 .dark-mode .terminal .button.is-dark:hover {
   background-color: #333;
 }
+/* Terminal input wrapper */
+.terminal-input-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: #000;
+  border-top: 1px solid #444;
+}
+
+/* Terminal prompt ($ symbol) */
+.terminal-prompt {
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  margin-right: 0.5rem;
+}
+
+/* Terminal input field */
+.terminal-mobile-input {
+  background-color: #000;
+  color: #00ff00;
+  font-family: 'Courier New', Courier, monospace;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 1rem;
+}
+.terminal-mobile-input::placeholder {
+  color: #00ff00;
+  opacity: 0.5;
+}
+
+/* Blinking cursor */
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background-color: #00ff00;
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+}
+
+/* Blinking animation */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Dark mode adjustments */
+.dark-mode .terminal-input-wrapper {
+  background-color: #111;
+  border-top-color: #555;
+}
+.dark-mode .terminal-prompt {
+  color: #ddd;
+}
+.dark-mode .terminal-mobile-input {
+  background-color: #111;
+  color: #00cc00;
+}
+.dark-mode .terminal-mobile-input::placeholder {
+  color: #00cc00;
+}
+.dark-mode .terminal-cursor {
+  background-color: #00cc00;
+}
 
 pre {
   white-space: pre-wrap;
