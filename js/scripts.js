@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Terminal functionality
   const terminal = document.getElementById('terminal');
   const terminalOutput = document.getElementById('terminal-output');
-  const terminalInput = document.getElementById('terminal-input');
   const terminalButtons = document.getElementById('terminal-buttons');
   let isTyping = false;
 
@@ -95,18 +94,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Make terminal focusable and handle key presses
+  // Terminal interaction
   if (terminal) {
-    // Focus the hidden input on click/tap
+    // Handle both click and touchstart for activation
     terminal.addEventListener('click', () => {
-      terminalInput.focus();
+      terminal.focus();
+    });
+    terminal.addEventListener('touchstart', (e) => {
+      e.preventDefault(); // Prevent scrolling or other default behaviors
+      terminal.focus();
     });
 
-    // Handle keypresses from the input
-    terminalInput.addEventListener('keydown', (e) => {
+    // Handle keypresses (desktop)
+    terminal.addEventListener('keydown', (e) => {
       const key = e.key.toUpperCase();
       if (commands[key]) {
-        e.preventDefault(); // Prevent typing in the input
+        e.preventDefault();
         runCommand(key);
       }
     });
@@ -118,6 +121,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (button) {
           const key = button.dataset.key;
           if (commands[key]) {
+            runCommand(key);
+          }
+        }
+      });
+      terminalButtons.addEventListener('touchstart', (e) => {
+        const button = e.target.closest('button');
+        if (button) {
+          const key = button.dataset.key;
+          if (commands[key]) {
+            e.preventDefault(); // Prevent default touch behavior
             runCommand(key);
           }
         }
