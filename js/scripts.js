@@ -78,7 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'Anyone can create art, but not everyone will understand the art they create.',
     'The lesson of Icarus is to make better wings.',
     'You are really only confined by the box you build around yourself.',
-    'I just say stuff sometimes.'
+    'I just say stuff sometimes.',
+    'Fables are not fairy tales.'
 
   ];
 
@@ -93,10 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
     'whoami': { command: 'whoami', response: 'Josef. I’m just a guy who does stuff.' },
     'projects': { command: 'projects', response: 'Check out my work: I do lots of stuff.' },
     'contact': { command: 'contact', response: 'Email me at josef.eagon@proton.me or find me on GitHub.' },
-    'help': { command: 'help', response: 'Available commands: whoami, projects, contact, help, skills, about, quote, clear' },
+    'help': { command: 'help', response: 'Available commands: whoami, projects, contact, help, skills, about, quote, , mysite, clear' },
     'skills': { command: 'skills', response: 'I’m skilled in coding, digital art, and storytelling.' },
     'about': { command: 'about', response: 'I’m a creative who loves blending art, code, and stories.' },
     'quote': { command: 'quote', response: getRandomQuote },
+    'mysite': { command: 'mysite', response: 'I built this website to prove to myself that I could. I bet you could too.'},
     'clear': { command: 'clear', response: null }
   };
 
