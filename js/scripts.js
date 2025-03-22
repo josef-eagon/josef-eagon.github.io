@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     terminalOutput.innerHTML += '<span class="terminal-cursor"></span>';
   }
 
-  // Array of placeholder quotes
+  // Array of quotes
   const quotes = [
     'Maybe you can swim better with a belly full of fish.',
     'Never trust a pig farmer with a handwritten sign.',
