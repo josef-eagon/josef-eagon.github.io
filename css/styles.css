@@ -132,30 +132,30 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow */
     margin-bottom: 1.5rem; /* Space between boxes */
 }
-
 .box:hover {
     transform: translateY(-5px); /* Slight lift on hover */
 }
-
 /* Removes bullets from list items in boxes */
 .box ul {
     list-style: none;
     padding: 0;
 }
-
 .box li {
     margin-bottom: 0.75rem; /* Space between items */
 }
-
 /* Bright blue links */
 .box a {
     color: #3498db;
     transition: color 0.3s ease;
 
 }
-
 .box a:hover {
     color: #66b3ff; /* Lighter blue on hover */
+}
+.box .image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Adjusted for dark mode */
