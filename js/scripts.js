@@ -64,10 +64,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Array of placeholder quotes
   const quotes = [
-    'Placeholder quote 1: Something inspiring.',
-    'Placeholder quote 2: A witty remark.',
-    'Placeholder quote 3: A thoughtful saying.',
-    'Placeholder quote 4: Another cool quote.'
+    'Maybe you can swim better with a belly full of fish.',
+    'Never trust a pig farmer with a handwritten sign.',
+    'I think I am funny, but I am not as funny as I think I am.',
+    'You mean to tell me anyone can just make a website?',
+    'My grandfather used to tell me my hair is curly because my skull is so thick it had to drill its way out.',
+    'At my core, I am just a silly little guy.',
+    'Poetry is a way to make words sing for you.',
+    'There is magic in the air today. Can you feel it?',
+    'Shakespeare has been called annoyingly quotable.',
+    'Some people don’t know which questions to ask, or they ask them in the wrong order.',
+    'Earth is a 10/10 planet.'
   ];
 
   // Function to get a random quote
