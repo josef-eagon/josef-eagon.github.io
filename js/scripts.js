@@ -74,7 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
     'There is magic in the air today. Can you feel it?',
     'Shakespeare has been called annoyingly quotable.',
     'Some people don’t know which questions to ask, or they ask them in the wrong order.',
-    'Earth is a 10/10 planet.'
+    'Earth is a 10/10 planet.',
+    'Anyone can create art, but not everyone will understand the art they create.',
+    'The lesson of Icarus is to make better wings.',
+    'You are really only confined by the box you build around yourself.',
+    'I just say stuff sometimes.'
+
   ];
 
   // Function to get a random quote
