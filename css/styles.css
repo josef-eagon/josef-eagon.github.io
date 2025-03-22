@@ -364,3 +364,7 @@ margin-bottom: 1rem;
 @keyframes blink {
   50% { opacity: 0; }
 }
+
+.dark-mode .content {
+  color: #ffffff; /* Pure white */
+}
