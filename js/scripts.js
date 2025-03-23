@@ -85,7 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'If I can make you think, I have succeeded.',
     'Nothing cradles you quite like moonlight.',
     'Every once in a while, the improbable thing does actually happen.',
-    'Coincidence and probability have an uneven friendship.'
+    'Coincidence and probability have an uneven friendship.',
+    'There is a lot of scheming in the animal kingdom.'
 
   ];
 
@@ -100,12 +101,13 @@ document.addEventListener('DOMContentLoaded', () => {
     'whoami': { command: 'whoami', response: 'Josef. I’m just a guy who does stuff.' },
     'projects': { command: 'projects', response: 'Check out my work: I do lots of stuff.' },
     'contact': { command: 'contact', response: 'Email me at josef.eagon@proton.me or find me on X @TypicalHwiteGuy.' },
-    'help': { command: 'help', response: 'Available commands: whoami, projects, contact, help, skills, about, quote, mysite, clear' },
+    'help': { command: 'help', response: 'Available commands: whoami, projects, contact, help, skills, about, quote, mysite, fables, clear' },
     'skills': { command: 'skills', response: 'I’m skilled in coding, digital art, and storytelling.' },
     'about': { command: 'about', response: 'I’m a creative who loves blending art, code, and stories.' },
     'quote': { command: 'quote', response: getRandomQuote },
     'mysite': { command: 'mysite', response: 'I built this website to prove to myself that I could. I bet you could too.'},
-    'clear': { command: 'clear', response: null }
+    'clear': { command: 'clear', response: null },
+    'fables': { command: 'fables', response: 'Fables are not fairy tales. I write them down and make art for each one.' },
   };
 
   // Function to type text character by character
