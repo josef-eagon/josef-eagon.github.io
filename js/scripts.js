@@ -93,8 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const commands = {
     'whoami': { command: 'whoami', response: 'Josef. I’m just a guy who does stuff.' },
     'projects': { command: 'projects', response: 'Check out my work: I do lots of stuff.' },
-    'contact': { command: 'contact', response: 'Email me at josef.eagon@proton.me or find me on GitHub.' },
-    'help': { command: 'help', response: 'Available commands: whoami, projects, contact, help, skills, about, quote, , mysite, clear' },
+    'contact': { command: 'contact', response: 'Email me at josef.eagon@proton.me or find me on X @TypicalHwiteGuy.' },
+    'help': { command: 'help', response: 'Available commands: whoami, projects, contact, help, skills, about, quote, mysite, clear' },
     'skills': { command: 'skills', response: 'I’m skilled in coding, digital art, and storytelling.' },
     'about': { command: 'about', response: 'I’m a creative who loves blending art, code, and stories.' },
     'quote': { command: 'quote', response: getRandomQuote },
