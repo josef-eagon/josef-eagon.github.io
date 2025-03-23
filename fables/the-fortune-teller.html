@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Title</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="icon" type="image/x-icon" href="../images/favicon_io/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../images/favicon_io/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../images/favicon_io/android-chrome-512x512.png">
+  <link rel="manifest" href="../images/favicon_io/site.webmanifest">
+</head>
+<body>
+  <header class="hero is-text">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">Aesop's Fables</h1>
+      </div>
+    </div>
+  </header>
+  <nav class="navbar has-shadow is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../index.html"><strong>My Portfolio</strong></a>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div id="navbarMenu" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="../index.html">Home</a>
+        <a class="navbar-item" href="../art.html">Art</a>
+        <a class="navbar-item" href="../stories.html">Stories</a>
+        <a class="navbar-item" href="../projects.html">Projects</a>
+        <a class="navbar-item" href="../blog.html">Blog</a>
+        <a class="navbar-item" href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-two-thirds">
+          <h2 class="title is-2">Title</h2>
+          <div class="content">
+            <p>There once was a Mantis living as a Fortune Teller that made his living by sitting in town selling fortunes and mysteries through cards and elixirs. 
+              When one day a Termite traveled to alert the Mantis that his home had been ransacked, the Mantis scurried off to investigate the claim. </p>
+            <p>A Cockroach, living as a neighbor to the Mantis, shouted at him as he fluttered past, "With all you claim to see tomorrow for others, why couldn't you see this today?" </p>
+            <p>-- -- -- -- --</p>
+            <p>oho! what to think of this one. i wonder if the Mantis gave the Cockroach a fortune they didn't like... or perhaps the Mantis was a pretender. 
+              maybe both but not at the same time.</p>
+            <!-- Add full fable text here -->
+            <img src="../images/fortune_teller.jpg" alt="Aesop's Fables Image" style="width: 800px; height: auto;">
+          </div>
+        </div>
+        <div class="column is-one-third" id="fable-index">
+          <!-- Fable index will be inserted here via JavaScript -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <button id="darkModeToggle" class="button is-small is-light">Toggle Dark Mode</button>
+  </section>
+  <button id="backToTop" class="button is-small is-primary is-fixed-bottom-right">Back to Top</button>
+  <script src="../js/scripts.js"></script>
+</body>
+</html>
