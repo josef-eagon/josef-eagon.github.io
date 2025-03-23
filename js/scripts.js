@@ -79,7 +79,13 @@ document.addEventListener('DOMContentLoaded', () => {
     'The lesson of Icarus is to make better wings.',
     'You are really only confined by the box you build around yourself.',
     'I just say stuff sometimes.',
-    'Fables are not fairy tales.'
+    'Fables are not fairy tales.',
+    'The gods gave us fire and we made rocks talk.',
+    'I know a thing or two about being OK.',
+    'If I can make you think, I have succeeded.',
+    'Nothing cradles you quite like moonlight.',
+    'Every once in a while, the improbable thing does actually happen.',
+    'Coincidence and probability have an uneven friendship.'
 
   ];
 
