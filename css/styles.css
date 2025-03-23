@@ -95,10 +95,14 @@
 
 /* Makes boxes uniform */
 .columns .box {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
 }
 
 /* Darker teal for titles */
@@ -152,10 +156,12 @@ body {
 .box a:hover {
     color: #66b3ff; /* Lighter blue on hover */
 }
-.box .image {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+/* Ensure images fit within the box */
+.box img {
+  max-width: 100%; /* Ensures image doesn’t overflow the box width */
+  height: auto; /* Maintains aspect ratio */
+  display: block; /* Removes extra space below image */
+  margin: 0 auto; /* Centers the image horizontally */
 }
 
 /* Adjusted for dark mode */
