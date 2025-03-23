@@ -107,7 +107,7 @@
 
 /* Darker teal for titles */
 .columns .title.is-4 {
-    color: #6f7983;
+    color: #535b63;
 }
 
 /* Space above buttons */
@@ -189,7 +189,8 @@ body {
   }
   .dark-mode .title,
   .dark-mode .subtitle,
-  .dark-mode .navbar-item {
+  .dark-mode .navbar-item,
+  .dark-mode .columns .title.is-4 {
     color: #ede7e7; /* Light text */
   }
   .dark-mode .navbar-item:hover {
